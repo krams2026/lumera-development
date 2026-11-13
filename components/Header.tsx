@@ -1,12 +1,14 @@
 "use client";
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
+import { useAutoAnimate } from "@formkit/auto-animate/react";
 import { NAV, SITE } from "@/data/site";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
+  const [parent] = useAutoAnimate<HTMLElement>({ duration: 220 });
   return (
-    <header className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur">
+    <header ref={parent} className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur">
       <div className="container-x flex h-16 items-center justify-between">
         <a href="#top" className="flex items-center gap-2 pixel tracking-wide">
           <span className="pixel grid h-8 w-8 place-items-center bg-gold text-base text-black">L</span>

@@ -12,7 +12,7 @@ export default function Services() {
           {SERVICES.map((s, i) => (
             <Reveal key={s.id} delay={(i % 3) * 0.08}>
               <article className="card flex h-full flex-col">
-                <s.icon className="text-gold" size={28} />
+                <span className="grid h-11 w-11 place-items-center rounded-lg border border-gold/30 bg-gradient-to-br from-gold/20 to-transparent"><s.icon className="text-gold-light" size={22} /></span>
                 <h3 className="mt-4 text-lg font-medium">{s.title}</h3>
                 <p className="mt-2 text-sm text-muted">{s.description}</p>
                 <ul className="mt-4 space-y-2 text-sm">
