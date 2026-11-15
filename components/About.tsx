@@ -1,22 +1,21 @@
 import Reveal from "./Reveal";
 import SectionTitle from "./SectionTitle";
-
-const POINTS = [
-  ["Индивидуальная разработка", "Каждый проект проектируется под конкретные задачи заказчика."],
-  ["Современные технологии", "Используем актуальные и проверенные инструменты."],
-  ["Внимание к деталям", "Аккуратный интерфейс и чистый код."],
-  ["Поддержка проектов", "Остаёмся на связи после запуска."],
-  ["Ориентация на результат", "Делаем то, что решает вашу задачу."],
-];
+import { ADVANTAGES } from "@/data/site";
 
 export default function About() {
   return (
-    <section id="about" className="section bg-deep">
+    <section id="about" className="section bg-white/[0.02]">
       <div className="container-x">
-        <SectionTitle title="О студии" subtitle="Lumera Development — студия универсальной цифровой разработки." />
-        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {POINTS.map(([t, d], i) => (
-            <Reveal key={t} delay={(i % 3) * 0.08}><div className="card h-full"><h3 className="font-medium text-gold">{t}</h3><p className="mt-2 text-sm text-muted">{d}</p></div></Reveal>
+        <SectionTitle eyebrow="О студии" title="Делаем то, что решает задачу" subtitle="Lumera Development разрабатывает цифровые продукты для бизнеса: от Telegram-бота до веб-сервиса. Каждый проект начинаем с цели и строим под неё." />
+        <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
+          {ADVANTAGES.map((a, i) => (
+            <Reveal key={a.title} delay={i * 0.08}>
+              <div className="card h-full">
+                <p className="font-display text-sm font-bold text-gold">{String(i + 1).padStart(2, "0")}</p>
+                <h3 className="mt-3 text-lg">{a.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted">{a.text}</p>
+              </div>
+            </Reveal>
           ))}
         </div>
       </div>

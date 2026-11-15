@@ -2,28 +2,31 @@
 import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useAutoAnimate } from "@formkit/auto-animate/react";
+import Logo from "./Logo";
 import { NAV, SITE } from "@/data/site";
 
 export default function Header() {
   const [open, setOpen] = useState(false);
   const [parent] = useAutoAnimate<HTMLElement>({ duration: 220 });
   return (
-    <header ref={parent} className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/80 backdrop-blur">
+    <header ref={parent} className="fixed inset-x-0 top-0 z-50 border-b border-white/10 bg-black/70 backdrop-blur-md">
       <div className="container-x flex h-16 items-center justify-between">
-        <a href="#top" className="flex items-center gap-2 pixel tracking-wide">
-          <span className="pixel grid h-8 w-8 place-items-center bg-gold text-base text-black">L</span>
+        <a href="#top" className="flex items-center gap-2.5 font-display text-[15px] font-bold tracking-tight">
+          <Logo size={32} id="lg-header" />
           {SITE.name}
         </a>
-        <nav className="hidden gap-8 text-sm text-muted md:flex" aria-label="Основная навигация">
-          {NAV.map((n) => <a key={n.href} href={n.href} className="transition hover:text-gold">{n.label}</a>)}
+        <nav className="hidden items-center gap-8 text-sm text-muted md:flex" aria-label="Основная навигация">
+          {NAV.map((n) => <a key={n.href} href={n.href} className="transition hover:text-ink">{n.label}</a>)}
+          <a href="#contact" className="btn btn-gold !px-5 !py-2">Обсудить проект</a>
         </nav>
         <button className="md:hidden" onClick={() => setOpen((v) => !v)} aria-label={open ? "Закрыть меню" : "Открыть меню"} aria-expanded={open}>
           {open ? <X /> : <Menu />}
         </button>
       </div>
       {open && (
-        <nav className="container-x flex flex-col gap-4 border-t border-gold/10 py-5 md:hidden" aria-label="Мобильная навигация">
-          {NAV.map((n) => <a key={n.href} href={n.href} onClick={() => setOpen(false)} className="text-muted hover:text-gold">{n.label}</a>)}
+        <nav className="container-x flex flex-col gap-4 border-t border-white/10 py-5 md:hidden" aria-label="Мобильная навигация">
+          {NAV.map((n) => <a key={n.href} href={n.href} onClick={() => setOpen(false)} className="text-muted hover:text-ink">{n.label}</a>)}
+          <a href="#contact" onClick={() => setOpen(false)} className="btn btn-gold">Обсудить проект</a>
         </nav>
       )}
     </header>

@@ -3,30 +3,30 @@
 @tailwind utilities;
 
 html { scroll-behavior: smooth; scroll-padding-top: 5rem; }
-body { @apply bg-bg font-sans text-ink antialiased; }
-h1, h2, h3, .pixel { @apply font-pixel; }
+body { @apply bg-bg font-sans text-ink antialiased; overflow-x: hidden; }
+h1, h2, h3 { @apply font-display font-bold tracking-tight; }
 ::selection { background: #D6B15E55; }
-@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
 
 @layer components {
-  .container-x { @apply mx-auto w-full max-w-5xl px-5 sm:px-8; }
-  .section { @apply py-20 sm:py-24; }
-  .card { @apply relative rounded-xl border border-white/10 bg-gradient-to-b from-surface to-deep p-6 transition duration-300 hover:-translate-y-0.5 hover:border-gold/50 hover:shadow-[0_0_36px_-12px_rgba(214,177,94,0.55)]; }
+  .container-x { @apply mx-auto w-full max-w-6xl px-5 sm:px-8; }
+  .section { @apply py-20 sm:py-28; }
+  .card { @apply relative rounded-2xl border border-white/10 bg-white/[0.03] p-6 backdrop-blur-sm transition duration-300 hover:-translate-y-0.5 hover:border-gold/40 hover:bg-white/[0.05] hover:shadow-[0_0_40px_-16px_rgba(214,177,94,0.6)]; }
   .card::before { content: ""; @apply pointer-events-none absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-gold-light to-transparent opacity-0 transition duration-300; }
   .card:hover::before { @apply opacity-100; }
-  .btn { @apply inline-flex items-center justify-center gap-2 rounded-lg px-6 py-3 text-sm font-medium transition duration-300 disabled:opacity-60; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-6 py-3 text-sm font-semibold transition duration-300 disabled:opacity-60; }
   .btn-gold { @apply bg-gradient-to-r from-gold-light to-gold text-black hover:-translate-y-0.5 hover:shadow-[0_0_28px_-6px_rgba(240,209,138,0.8)]; }
-  .btn-ghost { @apply border border-gold/40 text-gold hover:border-gold hover:bg-gold/10 hover:text-gold-light hover:shadow-[0_0_24px_-10px_#D6B15E]; }
-  .field { @apply w-full rounded-lg border border-white/10 bg-black px-4 py-3 text-sm outline-none transition focus:border-gold/60; }
-  .px-dot { @apply inline-block h-2 w-2 bg-gold; }
-  .px-grid { background-image: linear-gradient(#D6B15E14 1px, transparent 1px), linear-gradient(90deg, #D6B15E14 1px, transparent 1px); background-size: 16px 16px; }
+  .btn-ghost { @apply border border-white/15 text-ink hover:border-gold/60 hover:bg-gold/10 hover:text-gold-light; }
+  .field { @apply w-full rounded-xl border border-white/10 bg-white/[0.03] px-4 py-3 text-sm outline-none transition placeholder:text-muted focus:border-gold/60 focus:bg-white/[0.05]; }
+  .grid-bg { background-image: linear-gradient(rgba(255,255,255,.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px); background-size: 56px 56px; }
 }
 
 .text-gold-grad { background-image: linear-gradient(135deg, #F0D18A, #D6B15E 55%, #B58A3A); -webkit-background-clip: text; background-clip: text; color: transparent; }
-main > section.section { border-top: 1px solid transparent; border-image: linear-gradient(90deg, transparent, #D6B15E40, transparent) 1; }
+main > section.section { border-top: 1px solid transparent; border-image: linear-gradient(90deg, transparent, #D6B15E33, transparent) 1; }
+select.field option { background: #101010; }
 @keyframes glow-drift { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
 .glow-drift { animation: glow-drift 14s ease-in-out infinite; }
 @media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
   .glow-drift { animation: none; }
   *, *::before, *::after { transition-duration: 0.01ms !important; }
 }
